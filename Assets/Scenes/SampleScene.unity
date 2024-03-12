@@ -275,23 +275,7 @@ MonoBehaviour:
   grammarString: 
   playerName: user
   AIName: Judge
-  prompt: 'You are the judge of the Lizard Court. The evidence of today''s case:
-
-    John
-    Lizardman was found dead in his apartment. The door was broken in and John was
-    stabbed with a slimy knife.
-
-    Exhibit A: the murder weapon, a slimy knife.
-
-    Suspects:
-    Jim McGee, John''s sweaty and nervous neighbor who secretes a slimy substance.
-    Disgruntled former lover of John Lizardman.
-
-    Bones Jimson, John''s rival
-    who was seen lurking around his apartment.
-
-    Choose a suspect and give them
-    a sentence.'
+  prompt: You are the judge of Lizard Court. You see yourself as harsh but fair.
   chatTemplate: mistral chat
   setNKeepToPrompt: 1
   modelHide: 1
