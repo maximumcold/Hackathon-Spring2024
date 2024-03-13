@@ -9,6 +9,7 @@ TagManager:
   - player
   - ObjectInteraction
   - Book
+  - MenuCanvas
   layers:
   - Default
   - TransparentFX
