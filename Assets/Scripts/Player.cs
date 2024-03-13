@@ -1,14 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
     [SerializeField]
     float speed = 5.0f;
+    [SerializeField]
+    private float interactionCooldown = 0.5f; // Adjust as needed
+    private float lastInteractionTime;
     Animator anim;
     
     private bool is_Hidden = true;
+
+    private bool is_Interacting = false;
 
     // Start is called before the first frame update
     void Start()
@@ -18,10 +24,15 @@ public class Player : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
+   private void Update() {
         player_movement();
 
+
+    //     if (is_Interacting && Input.GetKeyDown(KeyCode.E)) {
+    //         Debug.Log("Interacting with object");
+    //         // Call the interaction logic  for the object
+    //         // Perform your interaction logic here
+    // }
     }
 
     void player_movement(){
@@ -48,31 +59,53 @@ public class Player : MonoBehaviour
         float verticalInput = Input.GetAxis("Vertical");
 
         transform.Translate(Vector3.right * speed * horizontalInput * Time.deltaTime);
-        transform.Translate(Vector3.up * speed * verticalInput * Time.deltaTime);}
+        transform.Translate(Vector3.up * speed * verticalInput * Time.deltaTime);
+    }
 
-    private void OnTriggerEnter2D(Collider2D other) {
-        if(other.CompareTag("Flashlight"))
+    public void OnTriggerStay2D(Collider2D other)
+    {
+        // Check if enough time has passed since the last interaction
+        if (Time.time - lastInteractionTime < interactionCooldown)
         {
-            is_Hidden = false;
-            Debug.Log("Player is hidden: " + is_Hidden);
+            return; // Exit the method if the cooldown is still active
         }
-        if (other.CompareTag("ObjectInteraction"))
+
+        // Check if the "E" button is pressed
+        if (Input.GetButton("Interact"))
         {
-            Debug.Log("Press E to interact");
-            if (Input.GetKeyDown(KeyCode.E))
+            if (other.CompareTag("Book"))
             {
-                Debug.Log("Interacting with object");
+                if (other.TryGetComponent(out BookObject interactableObject))
+                {
+                    interactableObject.Interact();
+                    lastInteractionTime = Time.time; // Update the last interaction time
+                }
             }
         }
-        
     }
-    private void OnTriggerExit2D(Collider2D other) {
-        if(other.CompareTag("Flashlight"))
-        {
+    private void OnCollisionExit2D(Collision2D other) {
+        if (other.gameObject.CompareTag("Flashlight")) {
             is_Hidden = true;
             Debug.Log("Player is hidden: " + is_Hidden);
         }
-        
     }
-    
+   private void OnTriggerEnter2D(Collider2D other) {
+        if (other.CompareTag("Flashlight")) {
+            is_Hidden = false;
+            Debug.Log("Player is hidden: " + is_Hidden);
+        }
+   }
+
+    private void OnTriggerExit2D(Collider2D other) {
+        if (other.CompareTag("Flashlight")) {
+            is_Hidden = true;
+            Debug.Log("Player is hidden: " + is_Hidden);
+        }
+
+        if (other.CompareTag("Book")) {
+            is_Interacting = false;
+        }
+    }
+
+
 }

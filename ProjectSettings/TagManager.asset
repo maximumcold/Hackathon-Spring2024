@@ -7,6 +7,8 @@ TagManager:
   - Flashlight
   - Guard
   - player
+  - ObjectInteraction
+  - Book
   layers:
   - Default
   - TransparentFX
