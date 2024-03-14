@@ -10,7 +10,7 @@ public class GuardAI : MonoBehaviour
     private Vector2 direction;
     private float walkSpeed = 5f;
     private int currentTarget;
-    private Transform[] waypoints = new Transform[5]; // Array to hold waypoints
+    private Transform[] waypoints = new Transform[2]; // Array to hold waypoints
 
     private void Awake()
     {
@@ -28,7 +28,6 @@ public class GuardAI : MonoBehaviour
         if (chasing)
         {
             direction = playerTransform.position - transform.position;
-            rotateGuard();
         }
 
         if (!waiting)
@@ -41,12 +40,24 @@ public class GuardAI : MonoBehaviour
             if (Vector2.Distance(transform.position, waypoints[currentTarget].position) < 0.1f)
             {
                 SetNextPoint();
+        
             }
         }
     }
 
+
+    private IEnumerator WaitAtPoint()
+    {
+        waiting = true;
+        yield return new WaitForSeconds(2);
+        rotateGuard();
+        waiting = false;
+    }
+    // Add a pause at each point before moving to the next
     public void SetNextPoint()
     {
+        StartCoroutine(WaitAtPoint());
+        
         // Pick a random waypoint different from the current one
         int nextPoint;
         do
@@ -60,27 +71,20 @@ public class GuardAI : MonoBehaviour
     public void Chase()
     {
         direction = playerTransform.position - transform.position;
-        rotateGuard();
+        
     }
 
     public void StopChasing()
     {
         chasing = false;
     }
-
     private void rotateGuard()
     {
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0, 0, angle);
+        transform.Rotate(0, 0, 180);
     }
 
     public void StartChasing()
     {
         chasing = true;
-    }
-
-    public void ToggleWaiting()
-    {
-        waiting = !waiting;
     }
 }
