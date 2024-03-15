@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class BookObject : MonoBehaviour
+public class GunObject : MonoBehaviour
 {
     // Start is called before the first frame update
     string text = "This is a book";
@@ -27,7 +27,7 @@ public class BookObject : MonoBehaviour
     public void Interact()
     {
         // Open menu of options
-        Debug.Log("Interacting with book");
+        Debug.Log("Interacting with gun");
 
     }
 

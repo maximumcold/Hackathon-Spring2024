@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class BookObject : MonoBehaviour
+public class TapeObject : MonoBehaviour
 {
     // Start is called before the first frame update
     string text = "This is a book";
@@ -18,18 +18,9 @@ public class BookObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (trigger_active && Input.GetKeyDown(KeyCode.E)){
-            // open menu of options
-            Interact();
-        }
     }
    
-    public void Interact()
-    {
-        // Open menu of options
-        Debug.Log("Interacting with book");
 
-    }
 
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.tag == "Player"){
