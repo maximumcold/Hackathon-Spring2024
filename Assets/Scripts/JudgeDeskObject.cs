@@ -8,8 +8,6 @@ using UnityEngine.UI;
 public class JudgeDeskObject : MonoBehaviour
 {
     // Start is called before the first frame update
-    string text = "This is a book";
-    private bool trigger_active = false;
     void Start()
     {
         
@@ -20,19 +18,6 @@ public class JudgeDeskObject : MonoBehaviour
     {
 
     }
-   
 
-
-    private void OnTriggerEnter2D(Collider2D other) {
-        if (other.gameObject.tag == "Player"){
-            trigger_active = true;
-            }
-        }
-
-    private void OnTriggerExit2D(Collider2D other) {
-        if (other.gameObject.tag == "Player"){
-            trigger_active = false;
-            }
-        }
 
 }

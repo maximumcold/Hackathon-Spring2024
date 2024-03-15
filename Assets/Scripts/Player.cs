@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using LLMUnity;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.Analytics;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -20,7 +22,7 @@ public class Player : MonoBehaviour
     public Guard[] guards;
     
     private bool isHidden = true;
-    private bool isInteracting = false;
+
     private bool isInTriggerSpace = false;
     private bool isShowingMenu = false;
     private bool interactedBook = false;
@@ -62,7 +64,10 @@ public class Player : MonoBehaviour
 
     void PlayerMovement()
     {
-        audioSource.Play();
+        if(!audioSource.isPlaying)
+        {
+            audioSource.Play();
+        }
         // Switches between idle and walk animation
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
         {
@@ -321,17 +326,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other) {
-        // if (other.CompareTag("Guard"))
-        // {
 
-        //     if (other.TryGetComponent(out Guard guard))
-        //     {
-        //        guard.chasing = true;
-        //     }
-           
-        // }
-    }
 
     private void OnTriggerExit2D(Collider2D other) {
         if (other.CompareTag("Guard")) {
@@ -339,22 +334,18 @@ public class Player : MonoBehaviour
         }
 
         if (other.CompareTag("Book")) {
-            isInteracting = false;
             menuCanvas.SetActive(false);
         }
 
         if (other.CompareTag("Gun")) {
-            isInteracting = false;
             menuCanvas.SetActive(false);
         }
 
         if (other.CompareTag("Tape")) {
-            isInteracting = false;
             menuCanvas.SetActive(false);
         }
 
         if (other.CompareTag("JudgeDesk")) {
-            isInteracting = false;
             menuCanvas.SetActive(false);
         }
     }

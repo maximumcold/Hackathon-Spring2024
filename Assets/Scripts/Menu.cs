@@ -19,9 +19,8 @@ public class Menu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        startButton.onClick.AddListener(StartGame);
-        exitButton.onClick.AddListener(ExitGame);
     }
+
     private void StartGame()
     {
         SceneManager.LoadScene("Game");

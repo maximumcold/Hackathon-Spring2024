@@ -34,14 +34,14 @@ public class Guard : MonoBehaviour
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             Quaternion targetRotation = Quaternion.AngleAxis(angle, Vector3.forward);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * walkSpeed);
-            if (direction.y > 0 || direction.y < 0)
-            {
-                GetComponent<SpriteRenderer>().flipY = !GetComponent<SpriteRenderer>().flipY; // Fix: Flip the guard horizontally
-            }
-            if (direction.x > 0 || direction.x < 0)
-            {
-                GetComponent<SpriteRenderer>().flipX = !GetComponent<SpriteRenderer>().flipX; // Fix: Flip the guard horizontally
-            }
+            // if (direction.y > 0 || direction.y < 0)
+            // {
+            //     GetComponent<SpriteRenderer>().flipY = !GetComponent<SpriteRenderer>().flipY; // Fix: Flip the guard horizontally
+            // }
+            // if (direction.x > 0 || direction.x < 0)
+            // {
+            //     GetComponent<SpriteRenderer>().flipX = !GetComponent<SpriteRenderer>().flipX; // Fix: Flip the guard horizontally
+            // }
         }
         else
         {

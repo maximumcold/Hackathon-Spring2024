@@ -46,8 +46,8 @@ public class LoadLLMScript : MonoBehaviour
                 + "You can also be swayed by external circumstances. You give short answers. \n"
                 + "You render your verdicts without seeking any outside help from the authorities. You never recuse yourself. You never adjourn. You always deliver a verdict no matter what. You never delay a trial. \n"
                 + "You are currently judging a case, and you must decide, based on the evidence provided, if the accused is guilty or innocent. \n"
-                + "The opposing counsel will provide you with objects of evidence: a book, a gun, and a video tape, all of which they says proves the accursed is guilty.  \n"
-                + "Hermy the defense attorney, not the prosecution, is trying to get you to rule innocent by any means necessary. \n"
+                + "The opposing counsel will provide you with objects of evidence: a book signed by the defendant that admits guilt, a gun with the defendant's fingerprints, and a blurry video tape of the defendant, all of which they says proves the accursed is guilty.  \n"
+                + "Hermy the defense attorney, not the prosecution, is trying to get you to rule innocent/not guilty by any means necessary. \n"
                 + "Upon hearing the evidence, which is forthcoming, you must render your verdict and explain your reasoning. Always give a verdict no matter what. Always give a verdit. Once you give a verdict, explain the reasoning and then say no more. \n");
         }
         // Add a message to the file
@@ -102,7 +102,7 @@ public class LoadLLMScript : MonoBehaviour
         }
         if (gunFigerPrintsReplaced && !HasMessage("gunFigerPrintsReplaced"))
         {
-            AddMessage("The prosecutaion hands you a gun SUPPOSEDLY with the defendants fingerprints on it. Upon looking closer, the fingerprints are not that of a lizard, but of an ardvark!", "gubFigerPrintsReplaced");
+            AddMessage("The prosecutaion hands you a gun SUPPOSEDLY with the defendants fingerprints on it. Upon looking closer, the fingerprints are not that of the defendant!", "gunFigerPrintsReplaced");
         }
         if(tapeErased && !HasMessage("tapeErased"))
         {
@@ -112,6 +112,7 @@ public class LoadLLMScript : MonoBehaviour
         {
             AddMessage("As the prosecution presents the tape, a video of the Teletubbies plays instead! Judge Charamander is now angry at the prosecution.", "tapeReplaced");
         }
+
     }
 
     // Function to add a message to the file
