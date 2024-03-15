@@ -13,16 +13,21 @@ public class Guard : MonoBehaviour
     private int currentTarget;
     [SerializeField]
     public Transform[] waypoints = new Transform[2]; // Array to hold waypoints
+    AudioSource audioSource;
 
     private void Awake()
     {
         playerTransform = GameObject.FindGameObjectWithTag("player").transform;
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
     {
         if (chasing)
         {
+            if (!audioSource.isPlaying){
+                audioSource.Play();
+            }
             Debug.Log("Chasing");
             direction = playerTransform.position - transform.position;
             transform.Translate(direction.normalized * Time.deltaTime * walkSpeed, Space.World); // Move towards player position

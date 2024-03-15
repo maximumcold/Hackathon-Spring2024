@@ -12,16 +12,15 @@ public class Menu : MonoBehaviour
 
     void Start()
     {
-        Button btn = startButton.GetComponent<Button>();
-        btn.onClick.AddListener(StartGame);
-        Button btn2 = exitButton.GetComponent<Button>();
-        btn2.onClick.AddListener(ExitGame);
+        startButton.onClick.AddListener(StartGame);
+        exitButton.onClick.AddListener(ExitGame);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        startButton.onClick.AddListener(StartGame);
+        exitButton.onClick.AddListener(ExitGame);
     }
     private void StartGame()
     {

@@ -30,6 +30,7 @@ public class Player : MonoBehaviour
 
     public GameObject menuCanvas;
     public TextMeshProUGUI menuText;
+    public AudioSource audioSource;
 
     private LoadLLMScript LoadLLMScript;
 
@@ -39,7 +40,7 @@ public class Player : MonoBehaviour
         LoadLLMScript = GetComponent<LoadLLMScript>();
         StartCoroutine(delay());
         guards = FindObjectsOfType<Guard>();
-
+        audioSource = GetComponent<AudioSource>();
         Debug.Log("Player is hidden: " + isHidden);
         anim = GetComponent<Animator>();
 
@@ -61,9 +62,11 @@ public class Player : MonoBehaviour
 
     void PlayerMovement()
     {
+        audioSource.Play();
         // Switches between idle and walk animation
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
         {
+            // play walking sound
             GetComponent<Animator>().SetBool("isWalking", true);
 
             // Flip animator based on direction
@@ -86,6 +89,7 @@ public class Player : MonoBehaviour
         else
         {
             GetComponent<Animator>().SetBool("isWalking", false);
+            audioSource.Stop();
         }
     }
 
