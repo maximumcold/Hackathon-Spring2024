@@ -7,6 +7,14 @@ TagManager:
   - Flashlight
   - Guard
   - player
+  - ObjectInteraction
+  - Book
+  - MenuCanvas
+  - Gun
+  - Tape
+  - JudgeDesk
+  - LLM
+  - Door
   layers:
   - Default
   - TransparentFX
