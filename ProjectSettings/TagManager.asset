@@ -10,6 +10,9 @@ TagManager:
   - ObjectInteraction
   - Book
   - MenuCanvas
+  - Gun
+  - Tape
+  - JudgeDesk
   layers:
   - Default
   - TransparentFX
