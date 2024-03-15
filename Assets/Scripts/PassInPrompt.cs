@@ -41,16 +41,16 @@ public class PassInPrompt : MonoBehaviour
         string message = "Assets/LLMPrompt.txt";
         prompt = System.IO.File.ReadAllText(message);
         llm.SetPrompt(prompt);
-        StartCoroutine(SendChatRoutine()); // Start coroutine to send chat messages
+        StartCoroutine(SendChatRoutine(prompt)); // Start coroutine to send chat messages
     }
 
     // Coroutine to continuously send chat messages
-    IEnumerator SendChatRoutine()
+    IEnumerator SendChatRoutine(string prompt)
     {
         while (true)
         {
             yield return new WaitForSeconds(2f); // Adjust delay between chat messages as needed
-            _ = llm.Chat("Hi", HandleReply);
+            _ = llm.Chat(prompt, HandleReply);
         }
     }
 
